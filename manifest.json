@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Teams Attendance Alert",
+  "version": "1.0",
+  "description": "Detects attendance/code keywords in Teams chat and blasts an alarm",
+  "permissions": ["notifications", "alarms", "storage", "tabs", "activeTab"],
+  "host_permissions": ["https://teams.microsoft.com/*", "https://teams.live.com/*", "https://api.telegram.org/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://teams.microsoft.com/*", "https://teams.live.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Teams Attendance Alert"
+  }
+}
